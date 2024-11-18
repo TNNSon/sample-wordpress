@@ -1,0 +1,402 @@
+/*
+Theme Name: Custom Theme
+Theme URI: http://example.com
+Author: Your Name
+Author URI: http://example.com
+Description: A custom theme with a custom login page.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: custom-theme
+*/
+
+.container {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    "header header header"
+    "section1 section1 section2"
+    "section3 section4 section5and6"
+    "section7 section7 section8";
+  gap: 15px;
+}
+
+.section {
+  border: 1px solid #000;
+  padding: 15px;
+  background-color: #f9f9f9;
+}
+
+/* Assigning grid areas */
+.header {
+  grid-area: header;
+}
+.section-1 {
+  grid-area: section1;
+}
+.section-2 {
+  grid-area: section2;
+}
+.section-3 {
+  grid-area: section3;
+}
+.section-4 {
+  grid-area: section4;
+}
+.section-5and6 {
+  grid-area: section5and6;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.section-7 {
+  grid-area: section7;
+  display: flex;
+  background-color: #f9f9f9;
+}
+.section-8 {
+  grid-area: section8;
+  display: flex;
+  background-color: #f9f9f9;
+}
+
+/* Header styling */
+.header h1 {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+/* Section 1 and Section 2 layout */
+.section-1,
+.section-2 {
+  display: flex;
+  background-color: #e0f7fa;
+}
+
+/* Sidebar styling for Section 1 */
+.sidebar {
+  background-color: #00796b;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  font-weight: bold;
+  font-size: 1.4em;
+  min-width: 60px;
+  text-align: center;
+  margin-right: 10px;
+}
+
+/* Button grid in Section 1 */
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  flex-grow: 1;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #ffffff;
+  color: #00796b;
+  border: 1px solid #ddd;
+  text-align: left;
+  font-size: 0.85em;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #e0f2f1;
+}
+
+.button img.icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+/* Section 2 styling */
+.section-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  background-color: #ffffff;
+  padding: 10px;
+}
+
+.section-2-item {
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 10px;
+  font-size: 0.9em;
+  color: #0076c8;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.section-2-item:hover {
+  background-color: #e0f0ff;
+}
+
+.section-2-item img {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+/* Section 3 styling */
+.section-3-title {
+  background-color: #00796b;
+  color: white;
+  padding: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.section-3-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 10px;
+}
+
+.section-3-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #e0f7fa;
+  border: 1px solid #ddd;
+  color: #00796b;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+.section-3-item:hover {
+  background-color: #d0e7e9;
+}
+
+.section-3-item img.icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.section-3-item-text {
+  flex-grow: 1;
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
+}
+
+.section-3-item-go {
+  font-size: 0.8em;
+  background-color: #ffffff;
+  color: #00796b;
+  padding: 2px 5px;
+  border: 1px solid #00796b;
+  border-radius: 3px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+/* Section 4 styling */
+.section-4-title {
+  background-color: #0076c8;
+  color: white;
+  padding: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-4-title a {
+  color: white;
+  font-size: 0.9em;
+  text-decoration: none;
+}
+
+.section-4-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e0e7f7;
+  height: 150px;
+  margin: 10px;
+  font-weight: bold;
+  font-size: 1em;
+  text-align: center;
+  color: #333;
+}
+
+.section-4-scrollable {
+  max-height: 80px;
+  overflow-y: auto;
+  border-top: 1px solid #ddd;
+  padding: 10px;
+}
+
+.section-4-item {
+  font-size: 0.9em;
+  color: #0076c8;
+  margin-bottom: 5px;
+}
+
+.section-4-item-date {
+  float: right;
+  color: #333;
+  font-size: 0.85em;
+}
+
+/* Section 5 styling */
+.section-5 {
+  flex: 1;
+  border: 1px solid #0076c8;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-5-title {
+  background-color: #0076c8;
+  color: white;
+  padding: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.section-5-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 10px;
+}
+
+.section-5-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  color: #0076c8;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.section-5-item:hover {
+  background-color: #e0e7f7;
+}
+
+.section-5-item img.icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.section-5-item-text {
+  font-size: 0.9em;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Section 6 styling */
+.section-6 {
+  display: flex;
+  gap: 10px;
+}
+
+.section-6-link {
+  flex: 1;
+  background-color: #4c92c3;
+  color: white;
+  font-size: 0.9em;
+  padding: 10px;
+  border: 2px solid #2b6da3; /* Darker blue border */
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.section-6-link-title {
+  background-color: #2b6da3;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 2px solid white;
+  margin-bottom: 10px;
+  display: inline-block;
+  width: 100%;
+}
+
+.section-6-link-content {
+  font-size: 0.85em;
+  color: #e0f0ff;
+  line-height: 1.4;
+}
+
+/* Section 7 and 8 layout */
+/* Sidebar styling for Sections 7 and 8 with horizontal layout and text overflow */
+.section-sidebar {
+  background-color: #0076c8;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1em;
+  min-width: 60px;
+  text-align: center;
+  padding: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Section grid styling for horizontal layout */
+.section-grid {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  margin-left: 10px;
+  flex-grow: 1;
+}
+
+/* Item styling for both sections */
+.section-item {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8em;
+  color: #0076c8;
+  text-align: center;
+  padding: 5px;
+  flex-shrink: 0;
+}
+
+/* Styling for the button in Section 8 */
+.section-8-button {
+  background-color: #0076c8;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.9em;
+  border-radius: 4px;
+}
