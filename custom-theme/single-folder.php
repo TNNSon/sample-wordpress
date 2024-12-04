@@ -1,12 +1,60 @@
 <?php
 get_header();
+?>
+<style>
+  .folder-icon {
+    font-size: 16px;
+    margin-right: 5px;
+    color: #0073aa;
+}
 
+  .folder-details-container {
+    padding: 20px;
+}
+
+.folder-content-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.folder-content-table th,
+.folder-content-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.folder-content-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.folder-content-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.folder-icon {
+    font-size: 16px;
+    margin-right: 5px;
+    color: #0073aa;
+}
+
+.action-link {
+    color: #0073aa;
+    text-decoration: none;
+}
+
+.action-link:hover {
+    text-decoration: underline;
+}
+</style>
+<?php
 // Get the current content post ID
-$current_post_id = get_the_ID();
+$current_post_id = get_queried_object_id();
 
 // Get the related folder ID from the post meta
-$related_folder_id = get_the_ID();
-echo esc_html($related_folder_id);
+$related_folder_id = get_queried_object_id();
 // Fetch related folder, sub-folders, and other content posts
 if ($related_folder_id) {
     // Query related folder details
@@ -36,62 +84,67 @@ if ($related_folder_id) {
         'orderby' => 'date',
         'order' => 'DESC',
     ]);
+} else {
+  echo esc_html('aaa');
 }
 ?>
 
 <div class="single-content-container">
     <h1><?php the_title(); ?></h1>
 
-    <div class="content-main">
-        <?php
-        // Display the main content
-        while (have_posts()) :
-            the_post();
-            the_content();
-        endwhile;
-        ?>
-    </div>
+    <table class="folder-content-table">
+        <thead>
+            <tr>
+                <th><?php _e('Title', 'your-text-domain'); ?></th>
+                <th><?php _e('Last Updated', 'your-text-domain'); ?></th>
+                <th><?php _e('Actions', 'your-text-domain'); ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            // Display sub-folders
+            if ($sub_folders->have_posts()) :
+                while ($sub_folders->have_posts()) :
+                    $sub_folders->the_post();
+                    ?>
+                    <tr>
+                        <td>
+                            <a href="<?php the_permalink(); ?>">
+                                <span class="folder-icon dashicons dashicons-category"></span>
+                                <?php the_title(); ?>
+                            </a>
+                        </td>
+                        <td><?php echo get_the_modified_date(); ?></td>
+                        <td>
+                            <a href="<?php the_permalink(); ?>" class="action-link"><?php _e('View', 'your-text-domain'); ?></a>
+                        </td>
+                    </tr>
+                    <?php
+                endwhile;
+                wp_reset_postdata();
+            endif;
 
-    <?php if ($related_folder_id && $related_folder) : ?>
-        <div class="related-folder">
-            <h2><?php _e('Related Folder', 'your-text-domain'); ?></h2>
-            <a href="<?php echo get_permalink($related_folder_id); ?>" class="folder-link">
-                <span class="folder-icon dashicons dashicons-category"></span>
-                <span class="folder-title"><?php echo esc_html($related_folder->post_title); ?></span>
-            </a>
-        </div>
-    <?php endif; ?>
-
-    <?php if ($sub_folders->have_posts()) : ?>
-        <div class="sub-folders">
-            <h2><?php _e('Sub-Folders', 'your-text-domain'); ?></h2>
-            <ul class="folder-list-grid">
-                <?php while ($sub_folders->have_posts()) : $sub_folders->the_post(); ?>
-                    <li class="folder-item">
-                        <a href="<?php the_permalink(); ?>" class="folder-link">
-                            <span class="folder-icon dashicons dashicons-category"></span>
-                            <span class="folder-title"><?php the_title(); ?></span>
-                        </a>
-                    </li>
-                <?php endwhile; ?>
-            </ul>
-        </div>
-        <?php wp_reset_postdata(); ?>
-    <?php endif; ?>
-
-    <?php if ($related_posts->have_posts()) : ?>
-        <div class="related-posts">
-            <h2><?php _e('Related Posts', 'your-text-domain'); ?></h2>
-            <ul class="related-posts-list">
-                <?php while ($related_posts->have_posts()) : $related_posts->the_post(); ?>
-                    <li class="related-post-item">
-                        <a href="<?php the_permalink(); ?>" class="related-post-link"><?php the_title(); ?></a>
-                    </li>
-                <?php endwhile; ?>
-            </ul>
-        </div>
-        <?php wp_reset_postdata(); ?>
-    <?php endif; ?>
+            // Display related content posts
+            if ($related_posts->have_posts()) :
+                while ($related_posts->have_posts()) :
+                    $related_posts->the_post();
+                    ?>
+                    <tr>
+                        <td>
+                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                        </td>
+                        <td><?php echo get_the_modified_date(); ?></td>
+                        <td>
+                            <a href="<?php the_permalink(); ?>" class="action-link"><?php _e('View', 'your-text-domain'); ?></a>
+                        </td>
+                    </tr>
+                    <?php
+                endwhile;
+                wp_reset_postdata();
+            endif;
+            ?>
+        </tbody>
+    </table>
 </div>
 
 <?php
