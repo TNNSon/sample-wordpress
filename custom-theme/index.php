@@ -1,327 +1,218 @@
-<?php
-/* Template Name: Custom Portal Layout */
-get_header(); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal UI</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<div class="container">
-  <!-- Header Section -->
-  <header class="section header">
-    <h1><?php bloginfo('name'); ?></h1>
-  </header>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 20px;
+    }
 
-  <!-- Section 1 -->
-  <div class="section section-1">
-    <div class="sidebar"><?php _e('基本情報', 'your-theme-text-domain'); ?></div>
-    <div class="button-grid">
-      <a href="<?php echo esc_url(home_url()); ?>" class="button">
-        <img src="https://img.icons8.com/fluency/48/000000/corporate.png" alt="Corporate Vision Icon" class="icon" />
-        Corporate Vision
-        <!-- <?php _e('Corporate Vision', 'your-theme-text-domain'); ?> -->
-      </a>
-      <a href="<?php echo esc_url(home_url('')); ?>" class="button">
-        <img src="https://img.icons8.com/fluency/48/000000/organization.png" alt="TEP Group Actions Icon" class="icon" />
-        TEP Group Actions
-        <!-- <?php _e('TEP Group Actions', 'your-theme-text-domain'); ?> -->
-      </a>
-      <a href="<?php echo esc_url(home_url('')); ?>" class="button">
-        <img src="https://img.icons8.com/fluency/48/000000/globe.png" alt="SD Goals Icon" class="icon" />
-        Sustainable Development Goals
-        <!-- <?php _e('Sustainable Development Goals', 'your-theme-text-domain'); ?> -->
-      </a>
-      <a href="<?php echo esc_url(home_url('')); ?>" class="button">
-        <img src="https://img.icons8.com/fluency/48/000000/virus.png" alt="COVID-19 Info Icon" class="icon" />
-        COVID-19 Info
-      </a>
-      <a href="<?php echo esc_url(home_url('')); ?>" class="button">
-        <img
-          src="https://img.icons8.com/fluency/48/000000/news.png"
-          alt="TEP News Icon"
-          class="icon" />
-        TEP News
-      </a>
-      <a href="<?php echo esc_url(home_url('')); ?>" class="button">
-        <img
-          src="https://img.icons8.com/fluency/48/000000/go.png"
-          alt="NEXTEP 30 Icon"
-          class="icon" />
-        NEXTEP 30
-      </a>
-      <a href="<?php echo esc_url(home_url('')); ?>" class="button">
-        <img
-          src="https://img.icons8.com/fluency/48/000000/family.png"
-          alt="Ichigan 2024 Icon"
-          class="icon" />
-        Ichigan 2024
-      </a>
-      <a href="<?php echo esc_url(home_url('')); ?>" class="button">
-        <img
-          src="https://img.icons8.com/fluency/48/000000/document.png"
-          alt="Company Policy Icon"
-          class="icon" />
-        Company Policy
-      </a>
-      <a href="<?php echo esc_url(home_url('')); ?>" class="button">
-        <img
-          src="https://img.icons8.com/fluency/48/000000/goal.png"
-          alt="Other Goal Icon"
-          class="icon" />
-        Other Goals
-      </a>
-      <!-- Add more buttons similarly with dynamic links and text as necessary -->
+    /* Flexbox Layout for IE Support */
+    .container {
+      display: flex; /* Use Flexbox for layout */
+      flex-wrap: wrap; /* Allow wrapping */
+      margin: -10px; /* Negative margin for consistent spacing */
+    }
+
+    .header {
+      width: 100%;
+      background-color: #0076c8;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.8em;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .section {
+      background: white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin: 10px; /* Adjust spacing */
+      flex: 1 1 calc(33.333% - 20px); /* Responsive columns */
+    }
+
+    /* Sidebar Styling */
+    .sidebar {
+      background-color: #0076c8;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-weight: bold;
+      flex: 0 0 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      height: 100%; /* Full height */
+    }
+
+    /* Button Grid and Items */
+    .button-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .button {
+      flex: 1 1 calc(33.333% - 10px);
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      text-align: center;
+      padding: 15px;
+      font-weight: bold;
+      font-size: 0.9em;
+      color: #0076c8;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #e0f0ff;
+    }
+
+    /* Section Grids */
+    .section-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .section-item {
+      flex: 1 1 calc(33.333% - 15px);
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9em;
+    }
+
+    .section-item img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .section-item .highlight {
+      background-color: #ffeb3b;
+      color: #000;
+      padding: 2px 5px;
+      font-weight: bold;
+      border-radius: 3px;
+      font-size: 0.8em;
+    }
+
+    /* bxSlider Styling */
+    .bxslider-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .bxslider {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 10px;
+    }
+
+    .bxslider img {
+      width: 190px;
+      height: 63px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">Portal Dashboard</div>
+
+    <!-- Section 1 -->
+    <div class="section section-1">
+      <div class="sidebar">Menu</div>
+      <div class="button-grid">
+        <div class="button">Button 1</div>
+        <div class="button">Button 2</div>
+        <div class="button">Button 3</div>
+        <div class="button">Button 4</div>
+        <div class="button">Button 5</div>
+        <div class="button">Button 6</div>
+      </div>
     </div>
-  </div>
 
-  <!-- Section 2 -->
-  <div class="section section-2">
-    <a href="<?php echo esc_url(home_url('/')); ?>" class="section-2-item">
-      <img src="https://img.icons8.com/fluency/48/000000/first-aid-kit.png" alt="Safety Icon" />
-      <?php _e('Safety & Health', 'your-theme-text-domain'); ?>
-    </a>
-    <a href="<?php echo esc_url(home_url('/')); ?>" class="section-2-item">
-      <img src="https://img.icons8.com/fluency/48/000000/calendar.png" alt="Schedule Icon" />
-      <?php _e('Monthly Schedule', 'your-theme-text-domain'); ?>
-    </a>
-    <a href="<?php echo esc_url(home_url('/')); ?>" class="section-2-item">
-      <img
-        src="https://img.icons8.com/fluency/48/000000/phone.png"
-        alt="Phone Directory Icon"
-      />
-      Phone Directory
-    </a>
-    <a href="<?php echo esc_url(home_url('/')); ?>" class="section-2-item">
-      <img
-        src="https://img.icons8.com/fluency/48/000000/advice.png"
-        alt="Consultation Icon"
-      />
-      Consultation Services
-    </a>
-    <a href="<?php echo esc_url(home_url('/')); ?>" class="section-2-item">
-      <img
-        src="https://img.icons8.com/fluency/48/000000/table.png"
-        alt="Salary Table Icon"
-      />
-      Salary Table
-    </a>
-    <a href="<?php echo esc_url(home_url('/')); ?>" class="section-2-item">
-      <img
-        src="https://img.icons8.com/fluency/48/000000/family.png"
-        alt="Welfare Icon"
-      />
-      Welfare Program
-    </a>
-    <!-- Add more links and items dynamically as required -->
-  </div>
+    <!-- Section 2 -->
+    <div class="section section-2">
+      <p>Content for Section 2</p>
+    </div>
 
-  <!-- Section 3 -->
-  <div class="section section-3">
-    <div class="section-3-title"><?php _e('各種業務システム', 'your-theme-text-domain'); ?></div>
-    <div class="section-3-grid">
-      <div class="section-3-item">
-        <div class="section-3-item-text">
-          <img src="https://img.icons8.com/fluency/48/000000/check.png" alt="Icon" class="icon" />
-          <?php _e('Decision & Application', 'your-theme-text-domain'); ?>
+    <!-- Section 3 -->
+    <div class="section section-3">
+      <div class="section-title">Section 3 Title</div>
+      <div class="section-grid">
+        <div class="section-item">
+          <img src="https://via.placeholder.com/40" alt="Icon" />
+          <span>Item 1</span>
+          <span class="highlight">New</span>
         </div>
-        <div class="section-3-item-go"><?php _e('GO', 'your-theme-text-domain'); ?></div>
-      </div>
-      <div class="section-3-item">
-        <div class="section-3-item-text">
-          <img
-            src="https://img.icons8.com/fluency/48/000000/work.png"
-            alt="Icon"
-            class="icon"
-          />
-          HR & Labor
+        <div class="section-item">
+          <img src="https://via.placeholder.com/40" alt="Icon" />
+          <span>Item 2</span>
         </div>
-        <div class="section-3-item-go">GO</div>
-      </div>
-      <div class="section-3-item">
-        <div class="section-3-item-text">
-          <img
-            src="https://img.icons8.com/fluency/48/000000/invoice.png"
-            alt="Icon"
-            class="icon"
-          />
-          Invoice Submission
+        <div class="section-item">
+          <img src="https://via.placeholder.com/40" alt="Icon" />
+          <span>Item 3</span>
         </div>
-        <div class="section-3-item-go">GO</div>
       </div>
-      <div class="section-3-item">
-        <div class="section-3-item-text">
-          <img
-            src="https://img.icons8.com/fluency/48/000000/sell.png"
-            alt="Icon"
-            class="icon"
-          />
-          OBIC Sales Management
-        </div>
-        <div class="section-3-item-go">GO</div>
-      </div>
-      <div class="section-3-item">
-        <div class="section-3-item-text">
-          <img
-            src="https://img.icons8.com/fluency/48/000000/email.png"
-            alt="Icon"
-            class="icon"
-          />
-          Mail & Schedule
-        </div>
-        <div class="section-3-item-go">GO</div>
-      </div>
-      <div class="section-3-item">
-        <div class="section-3-item-text">
-          <img
-            src="https://img.icons8.com/fluency/48/000000/book.png"
-            alt="Icon"
-            class="icon"
-          />
-          Accounting & Budget Management
-        </div>
-        <div class="section-3-item-go">GO</div>
-      </div>
-      <div class="section-3-item">
-        <div class="section-3-item-text">
-          <img
-            src="https://img.icons8.com/fluency/48/000000/cloud.png"
-            alt="Icon"
-            class="icon"
-          />
-          Electronic Data Storage
-        </div>
-        <div class="section-3-item-go">GO</div>
-      </div>
-      <div class="section-3-item">
-        <div class="section-3-item-text">
-          <img
-            src="https://img.icons8.com/fluency/48/000000/shopping-cart.png"
-            alt="Icon"
-            class="icon"
-          />
-          Office Supplies Purchase
-        </div>
-        <div class="section-3-item-go">GO</div>
-      </div>
-      <!-- Repeat items as needed -->
     </div>
-  </div>
 
-  <!-- Section 4 -->
-  <div class="section section-4">
-    <div class="section-4-title">
-      <?php _e('会社からのお知らせ', 'your-theme-text-domain'); ?>
-      <a href="<?php echo esc_url(home_url('/news')); ?>"><?php _e('一覧表示', 'your-theme-text-domain'); ?></a>
-    </div>
-    <div class="section-4-content">
-      <p><?php _e('AI-OCRシステムで手書き書類をデータ化', 'your-theme-text-domain'); ?></p>
-    </div>
-    <div class="section-4-scrollable">
-      <div class="section-4-item">
-        【ご案内】本社営業本部 11-12月イベント
-        <span class="section-4-item-date">11/05</span>
+    <!-- Section 4 -->
+    <div class="section section-4">
+      <div class="bxslider-container">
+        <ul class="bxslider">
+          <li><img src="https://via.placeholder.com/190x63?text=Logo+1" alt="Logo 1" /></li>
+          <li><img src="https://via.placeholder.com/190x63?text=Logo+2" alt="Logo 2" /></li>
+          <li><img src="https://via.placeholder.com/190x63?text=Logo+3" alt="Logo 3" /></li>
+        </ul>
       </div>
-      <div class="section-4-item">
-        【お知らせ】月別スケジュールを更新しました
-        <span class="section-4-item-date">11/01</span>
-      </div>
-      <div class="section-4-item">
-        在宅勤務補助手当の適用開始
-        <span class="section-4-item-date">11/01</span>
-      </div>
-      <!-- Additional items as necessary -->
     </div>
-  </div>
 
-  <!-- Section 5 and 6 container -->
-  <div class="section section-5and6">
     <!-- Section 5 -->
-    <div class="section-5">
-      <div class="section-5-title"><?php _e('申請書・マニュアル等', 'your-theme-text-domain'); ?></div>
-      <div class="section-5-grid">
-      <a href="<?php echo esc_url(home_url('/content')); ?>" class="section-5-item">
-      <img src="https://img.icons8.com/fluency/48/000000/document.png" alt="Icon" class="icon" />
-      <div class="section-5-item-text"><?php _e('申請書・マニュアル', 'your-theme-text-domain'); ?></div>
-    </a>
-        <div class="section-5-item">
-          <img
-            src="https://img.icons8.com/fluency/48/000000/handshake.png"
-            alt="Icon"
-            class="icon"
-          />
-          <div class="section-5-item-text">営業サポート</div>
-        </div>
-        <div class="section-5-item">
-          <img
-            src="https://img.icons8.com/fluency/48/000000/security-checked.png"
-            alt="Icon"
-            class="icon"
-          />
-          <div class="section-5-item-text">コンプライアンス</div>
-        </div>
-        <div class="section-5-item">
-          <img
-            src="https://img.icons8.com/fluency/48/000000/investment.png"
-            alt="Icon"
-            class="icon"
-          />
-          <div class="section-5-item-text">資産形成</div>
-        </div>
-        <div class="section-5-item">
-          <img
-            src="https://img.icons8.com/fluency/48/000000/technical-support.png"
-            alt="Icon"
-            class="icon"
-          />
-          <div class="section-5-item-text">ITサポート</div>
-        </div>
-        <div class="section-5-item">
-          <img
-            src="https://img.icons8.com/fluency/48/000000/automation.png"
-            alt="Icon"
-            class="icon"
-          />
-          <div class="section-5-item-text">RPA</div>
-        </div>
-        <!-- Repeat items dynamically if needed -->
-      </div>
+    <div class="section section-5">
+      <p>Content for Section 5</p>
     </div>
 
-    <!-- Section 6 -->
-    <div class="section-6">
-      <div class="section-6-link">
-        <div class="section-6-link-title"><?php _e('採用・募集関連', 'your-theme-text-domain'); ?></div>
-        <ul class="section-6-link-content">
-          <li>求人募集情報・募集マニュアル</li>
-          <li>HP求人掲載方法など</li>
-        </ul>
+    <!-- Section 7 -->
+    <div class="section section-7">
+      <div class="sidebar">External</div>
+      <div class="grid">
+        <div class="item"><img src="https://via.placeholder.com/190" alt="Item 1" /></div>
+        <div class="item"><img src="https://via.placeholder.com/190" alt="Item 2" /></div>
+        <div class="item"><img src="https://via.placeholder.com/190" alt="Item 3" /></div>
       </div>
-      <div class="section-6-link">
-        <div class="section-6-link-title">社内問い合わせポータル</div>
-        <ul class="section-6-link-content">
-          <li>人事労務・安全衛生・資産管理</li>
-          <li>経費清算・旅行管理・調達・発注</li>
-          <li>事業管理ライン別・情報システム</li>
-        </ul>
-      </div>
-      <!-- Additional links as necessary -->
+      <div class="sidebar">Help</div>
     </div>
   </div>
-
-  <!-- Section 7 -->
-  <div class="section section-7">
-    <div class="section-sidebar"><?php _e('関連外部', 'your-theme-text-domain'); ?></div>
-    <div class="section-grid">
-      <div class="section-item">
-        <img src="https://via.placeholder.com/70x50?text=Company+1" alt="Company 1" />
-      </div>
-      <!-- Additional items as needed -->
-    </div>
-  </div>
-
-  <!-- Section 8 -->
-  <div class="section section-8">
-    <div class="section-sidebar"><?php _e('一覧はこちら', 'your-theme-text-domain'); ?></div>
-    <div class="section-grid">
-      <div class="section-item section-8-button"><?php _e('no content', 'your-theme-text-domain'); ?></div>
-    </div>
-  </div>
-</div>
-
-<?php get_footer(); ?>
+</body>
+</html>
