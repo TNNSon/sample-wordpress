@@ -18,22 +18,26 @@
       margin: 20px;
     }
 
-    /* Flexbox Layout for IE Support */
     .container {
-      display: flex; /* Use Flexbox for layout */
-      flex-wrap: wrap; /* Allow wrapping */
-      margin: -10px; /* Negative margin for consistent spacing */
+      display: grid;
+      grid-template-areas:
+        "header header header"
+        "section-1 section-2 section-2"
+        "section-3 section-3 section-3"
+        "section-4 section-4 section-5"
+        "section-6 section-6 section-7";
+      gap: 20px;
     }
 
     .header {
-      width: 100%;
+      grid-area: header;
       background-color: #0076c8;
       color: white;
       padding: 20px;
       text-align: center;
       font-size: 1.8em;
       font-weight: bold;
-      margin-bottom: 20px;
+      border: 1px solid red; /* Label: Header Notification */
     }
 
     .section {
@@ -41,11 +45,46 @@
       padding: 20px;
       border-radius: 5px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      margin: 10px; /* Adjust spacing */
-      flex: 1 1 calc(33.333% - 20px); /* Responsive columns */
+      border: 1px solid red; /* Section Labels */
     }
 
-    /* Sidebar Styling */
+    .section-1 {
+      grid-area: section-1;
+      display: flex;
+    }
+
+    .section-2 {
+      grid-area: section-2;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .section-3 {
+      grid-area: section-3;
+    }
+
+    .section-4 {
+      grid-area: section-4;
+    }
+
+    .section-5 {
+      grid-area: section-5;
+    }
+
+    .section-6 {
+      grid-area: section-6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-7 {
+      grid-area: section-7;
+      display: flex;
+      gap: 15px;
+    }
+
     .sidebar {
       background-color: #0076c8;
       color: white;
@@ -57,14 +96,13 @@
       align-items: center;
       justify-content: center;
       border-radius: 5px;
-      height: 100%; /* Full height */
     }
 
-    /* Button Grid and Items */
     .button-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      flex-grow: 1;
     }
 
     .button {
@@ -85,7 +123,6 @@
       background-color: #e0f0ff;
     }
 
-    /* Section Grids */
     .section-grid {
       display: flex;
       flex-wrap: wrap;
@@ -120,7 +157,6 @@
       font-size: 0.8em;
     }
 
-    /* bxSlider Styling */
     .bxslider-container {
       width: 100%;
       display: flex;
@@ -146,43 +182,49 @@
 </head>
 <body>
   <div class="container">
-    <!-- Header -->
-    <div class="header">Portal Dashboard</div>
+    <!-- Header Notification -->
+    <div class="header">Header Notification</div>
 
     <!-- Section 1 -->
     <div class="section section-1">
-      <div class="sidebar">Menu</div>
+      <div class="sidebar">基本情報</div>
       <div class="button-grid">
-        <div class="button">Button 1</div>
-        <div class="button">Button 2</div>
-        <div class="button">Button 3</div>
-        <div class="button">Button 4</div>
-        <div class="button">Button 5</div>
-        <div class="button">Button 6</div>
+        <div class="button">企業理念</div>
+        <div class="button">TEPグループ</div>
+        <div class="button">会社概要</div>
+        <div class="button">沿革</div>
+        <div class="button">事業紹介</div>
+        <div class="button">所在地</div>
       </div>
     </div>
 
     <!-- Section 2 -->
     <div class="section section-2">
-      <p>Content for Section 2</p>
+      <div class="button-grid">
+        <div class="button">安全衛生</div>
+        <div class="button">月別スケジュール</div>
+        <div class="button">電話番号一覧</div>
+        <div class="button">各種相談窓口</div>
+        <div class="button">職制表</div>
+        <div class="button">福利厚生</div>
+      </div>
     </div>
 
     <!-- Section 3 -->
     <div class="section section-3">
-      <div class="section-title">Section 3 Title</div>
+      <div class="section-title">各種業務システム</div>
       <div class="section-grid">
         <div class="section-item">
           <img src="https://via.placeholder.com/40" alt="Icon" />
-          <span>Item 1</span>
-          <span class="highlight">New</span>
+          <span>WEB明細</span>
         </div>
         <div class="section-item">
           <img src="https://via.placeholder.com/40" alt="Icon" />
-          <span>Item 2</span>
+          <span>メール・スケジュール</span>
         </div>
         <div class="section-item">
           <img src="https://via.placeholder.com/40" alt="Icon" />
-          <span>Item 3</span>
+          <span>人事・労務</span>
         </div>
       </div>
     </div>
@@ -200,12 +242,29 @@
 
     <!-- Section 5 -->
     <div class="section section-5">
-      <p>Content for Section 5</p>
+      <p>申請書・マニュアル等</p>
+      <div class="button-grid">
+        <div class="button">申請書・マニュアル</div>
+        <div class="button">営業サポート</div>
+        <div class="button">ITサポート</div>
+        <div class="button">資産形成</div>
+        <div class="button">コンプライアンス</div>
+      </div>
+    </div>
+
+    <!-- Section 6 -->
+    <div class="section section-6">
+      <div>関連外部</div>
+      <div class="grid">
+        <div class="item"><img src="https://via.placeholder.com/190" alt="Item 1" /></div>
+        <div class="item"><img src="https://via.placeholder.com/190" alt="Item 2" /></div>
+        <div class="item"><img src="https://via.placeholder.com/190" alt="Item 3" /></div>
+      </div>
     </div>
 
     <!-- Section 7 -->
     <div class="section section-7">
-      <div class="sidebar">External</div>
+      <div class="sidebar">関連外部</div>
       <div class="grid">
         <div class="item"><img src="https://via.placeholder.com/190" alt="Item 1" /></div>
         <div class="item"><img src="https://via.placeholder.com/190" alt="Item 2" /></div>
